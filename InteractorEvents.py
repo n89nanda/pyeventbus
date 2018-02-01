@@ -9,5 +9,10 @@ class InteractorEvents:
             self.msg = msg
         def getMessage(self):
             return self.msg
+    class PresentInformation:
+        def __init__(self, msg):
+            self.msg = msg
+        def getMessage(self):
+            return self.msg
     
         
