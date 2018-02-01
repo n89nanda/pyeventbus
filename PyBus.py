@@ -5,7 +5,8 @@ import time, sys
 from Queue import Queue
 from threading import Thread
 from multiprocessing.dummy import Pool as ThreadPool
-import gevent
+import multiprocessing
+import gevent, os
 exitFlag = 0
 
 @Singleton
@@ -57,6 +58,7 @@ class PyBus:
                         if method.__name__ in dir(subscriber):
                             mode = self.method_mode.get(method)
                             print 'executing ', method.__name__, ' in mode: ', mode
+                            print 'PID:', os.getpid()
                             if mode == 0:
                                 method(self, event)
                             else:
@@ -66,9 +68,14 @@ class PyBus:
                                         PyBusAsyncThread(i, threadName, 1, method, event).start()
                                     elif mode == 1:
                                         self.queue.put(PyBusAsyncThread(i, threadName, 1, method, event).start())
+                                    elif mode == 5:
+                                        p = multiprocessing.Process(target=method, args=(self, event,))
+                                        p.start()
                                     elif mode == 3:
                                         print 'spawning'
-                                        gevent.joinall([gevent.spawn(method(self, event))])
+                                        gevent.spawn(method(self, event))
+    
+                                        # gevent.joinall([gevent.spawn(method(self, event))])
                                         
                                 except:
                                     print 'Error: unable to start thread: ', sys.exc_info()[0]
@@ -118,11 +125,11 @@ if __name__ == '__main__':
 
 
 class Mode:
-        MAIN = 0 #DEFAULT
-        BACKGROUNDQUEUE = 1 #1000 workers
-        CONCURRENT = 3
-        ASYNC = 4 #SPAWN NEW THREAD
-        #THREADPOOL = 5
+        MAIN = 0 
+        BACKGROUNDQUEUE = 1 
+        GREENLET = 3
+        ASYNC = 4 
+        CONCURRENT = 5
 
         def __init__(self):
             pass

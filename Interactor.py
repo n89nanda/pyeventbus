@@ -3,6 +3,7 @@ import time
 import threading
 import numpy.random
 from datetime import datetime
+import os
 
 from InteractorEvents import *
 class Interactor:
@@ -24,21 +25,33 @@ class Interactor:
         sorted(a1)
         sorted(a2)
 
-    @subscribe(threadMode=Mode.MAIN, onEvent = InteractorEvents.ComplexCalculationInBackgroundThreadEvent)
+    @subscribe(threadMode=Mode.GREENLET, onEvent = InteractorEvents.ComplexCalculationInBackgroundThreadEvent)
     def performComplexCalculationInMainThread(self, event):
         print 'current thread: for performComplexCalculationInMainThread', threading.currentThread().getName()
+        print 'PID:', os.getpid()
+        # for line in open("/proc/%d/status" % pid).readlines():
+        #     if line.startswith("State:"):
+        #         print line.split(":",1)[1].strip().split(' ')[0]
         print 'starting long task at:', str(datetime.now())
         test_arr_1 = numpy.random.randint(0,high=1000,size=10000000)
         test_arr_2 = numpy.random.randint(0,high=1000,size=10000000)
         sorted(test_arr_1)
         sorted(test_arr_2)
         print 'finished long task at:', str(datetime.now())
+        
         PyBus.Instance().post(InteractorEvents.PresentInformation("present this from performComplexCalculationInMainThread"))
+        # for line in open("/proc/%d/status" % pid).readlines():
+        #     if line.startswith("State:"):
+        #         print line.split(":",1)[1].strip().split(' ')[0]
         
 
-    @subscribe(threadMode=Mode.MAIN, onEvent = InteractorEvents.ComplexCalculationInBackgroundThreadEvent)
+    @subscribe(threadMode=Mode.GREENLET, onEvent = InteractorEvents.ComplexCalculationInBackgroundThreadEvent)
     def performComplexCalculationInBackgroundThread(self, event):
         print 'current thread for performComplexCalculationInBackgroundThread:', threading.currentThread().getName()
+        print 'PID:', os.getpid()
+        # for line in open("/proc/%d/status" % pid).readlines():
+        #     if line.startswith("State:"):
+        #         print line.split(":",1)[1].strip().split(' ')[0]
         print 'starting long task at:', str(datetime.now())
         test_arr_1 = numpy.random.randint(0,high=1000,size=10000000)
         test_arr_2 = numpy.random.randint(0,high=1000,size=10000000)
@@ -46,6 +59,9 @@ class Interactor:
         sorted(test_arr_2)
         print 'finished long task at:', str(datetime.now())
         PyBus.Instance().post(InteractorEvents.PresentInformation("present this from performComplexCalculationInBackgroundThread"))
+        # for line in open("/proc/%d/status" % pid).readlines():
+        #     if line.startswith("State:"):
+        #         print line.split(":",1)[1].strip().split(' ')[0]
 
     # @subscribe(threadMode=Mode.ASYNC, onEvent = InteractorEvents.ComplexCalculationInBackgroundThreadEvent)
     # def performComplexCalculationInDefaultThread(self, event):

@@ -1,7 +1,7 @@
 from PyBus import *
 from InteractorEvents import *
 import threading
-
+import os
 class View:
     'View class always on Main Thread'
 
@@ -12,6 +12,7 @@ class View:
         self.bus.register(viewInstance, self.__class__.__name__)
 
     def complex_calculation_in_main_thread(self):
+        print 'PID:', os.getpid()
         print 'posting ComplexCalculationInBackgroundThreadEventvent from view...with thread:,', threading.currentThread().getName()
         self.bus.post(InteractorEvents.ComplexCalculationInBackgroundThreadEvent("performComplexCalculationInBackgroundThread"))
 
