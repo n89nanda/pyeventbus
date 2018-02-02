@@ -88,31 +88,31 @@ Modes: pyeventbus can run the subscribing methods in 5 different modes
         
 3. GREENLET::
 
-    + Runs the method in a greenlet using gevent library::
+    Runs the method in a greenlet using gevent library::
             
     @subscribe(threadMode = Mode.GREENLET, onEvent=MessageEvent)
     def func(self, event):
         # Do something
         pass
     
-4. BACKGROUND:
+4. BACKGROUND::
     
-    + Adds the subscribing methods to a queue which is executed by workers.
+    Adds the subscribing methods to a queue which is executed by workers::
             
-            @subscribe(threadMode = Mode.BACKGROUND, onEvent=MessageEvent)
-            def func(self, event):
-                # Do something
-                pass
+    @subscribe(threadMode = Mode.BACKGROUND, onEvent=MessageEvent)
+    def func(self, event):
+        # Do something
+        pass
 
 
-3. CONCURRENT:
+3. CONCURRENT::
 
-    + Runs the method in a seperate python process::
+    Runs the method in a seperate python process::
             
-            @subscribe(threadMode = Mode.CONCURRENT, onEvent=MessageEvent)
-            def func(self, event):
-                # Do something
-                pass
+    @subscribe(threadMode = Mode.CONCURRENT, onEvent=MessageEvent)
+    def func(self, event):
+        # Do something
+        pass
    
    
  
