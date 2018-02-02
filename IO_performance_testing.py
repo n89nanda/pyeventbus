@@ -6,7 +6,7 @@ from os import getcwd
 import json
 
 class Events:
-    class CPUHeavyTestEvent:
+    class IOHeavyTestEvent:
         start = 0
         finish = 0
         duration = 0
@@ -19,7 +19,7 @@ class Events:
         def getDuration(self):
             return self.finish - self.start
 
-    class CPUHeavyTestEventBG:
+    class IOHeavyTestEventBG:
         start = 0
         finish = 0
         duration = 0
@@ -32,7 +32,7 @@ class Events:
         def getDuration(self):
             return self.finish - self.start
 
-    class CPUHeavyTestEventGreenlet:
+    class IOHeavyTestEventGreenlet:
         start = 0
         finish = 0
         duration = 0
@@ -45,7 +45,7 @@ class Events:
         def getDuration(self):
             return self.finish - self.start
 
-    class CPUHeavyTestEventParallel:
+    class IOHeavyTestEventParallel:
         start = 0
         finish = 0
         duration = 0
@@ -58,7 +58,7 @@ class Events:
         def getDuration(self):
             return self.finish - self.start
 
-    class CPUHeavyTestEventConcurrent:
+    class IOHeavyTestEventConcurrent:
         start = 0
         finish = 0
         duration = 0
@@ -78,40 +78,40 @@ class PerformanceTester:
     def register(self, aInstance):
         PyBus.Instance().register(aInstance, self.__class__.__name__)
 
-    def startCPUHeavyTestInMain(self):
-        event = Events.CPUHeavyTestEvent()
+    def startIOHeavyTestInMain(self):
+        event = Events.IOHeavyTestEvent()
         event.setStart(timer())
         start = timer()
         PyBus.Instance().post(event)
-        print("{} got control back in {} seconds.".format('startCPUHeavyTestInMain: ', timer() - start))
+        print("{} got control back in {} seconds.".format('startIOHeavyTestInMain: ', timer() - start))
 
-    def startCPUHeavyTestInBackground(self):
-        event = Events.CPUHeavyTestEventBG()
+    def startIOHeavyTestInBackground(self):
+        event = Events.IOHeavyTestEventBG()
         event.setStart(timer())
         start = timer()
         PyBus.Instance().post(event)
-        print("{} got control back in {} seconds.".format('startCPUHeavyTestInBackground: ', timer() - start))
+        print("{} got control back in {} seconds.".format('startIOHeavyTestInBackground: ', timer() - start))
 
-    def startCPUHeavyTestInGreenlet(self):
-        event = Events.CPUHeavyTestEventGreenlet()
+    def startIOHeavyTestInGreenlet(self):
+        event = Events.IOHeavyTestEventGreenlet()
         event.setStart(timer())
         start = timer()
         PyBus.Instance().post(event)
-        print("{} got control back in {} seconds.".format('startCPUHeavyTestInGreenlet: ', timer() - start))
+        print("{} got control back in {} seconds.".format('startIOHeavyTestInGreenlet: ', timer() - start))
 
-    def startCPUHeavyTestInParallel(self):
-        event = Events.CPUHeavyTestEventParallel()
+    def startIOHeavyTestInParallel(self):
+        event = Events.IOHeavyTestEventParallel()
         event.setStart(timer())
         start = timer()
         PyBus.Instance().post(event)
-        print("{} got control back in {} seconds.".format('startCPUHeavyTestInParallel: ', timer() - start))
+        print("{} got control back in {} seconds.".format('startIOHeavyTestInParallel: ', timer() - start))
 
-    def startCPUHeavyTestInConcurrent(self):
-        event = Events.CPUHeavyTestEventConcurrent()
+    def startIOHeavyTestInConcurrent(self):
+        event = Events.IOHeavyTestEventConcurrent()
         event.setStart(timer())
         start = timer()
         PyBus.Instance().post(event)
-        print("{} got control back in {} seconds.".format('startCPUHeavyTestInConcurrent: ', timer() - start))
+        print("{} got control back in {} seconds.".format('startIOHeavyTestInConcurrent: ', timer() - start))
 
 class PerformanceExecuter:
     def __init__(self):
@@ -120,126 +120,126 @@ class PerformanceExecuter:
     def register(self, bInstance):
         PyBus.Instance().register(bInstance, self.__class__.__name__)
 
-    @subscribe(onEvent=Events.CPUHeavyTestEvent)
-    def cpuHeavyTest1(self, event):
+    @subscribe(onEvent=Events.IOHeavyTestEvent)
+    def IOHeavyTest1(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
 
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest1: Main-thread', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest1: Main-thread', event.getDuration()))
     
-    @subscribe(threadMode = Mode.BACKGROUND, onEvent=Events.CPUHeavyTestEventBG)
-    def cpuHeavyTest2(self, event):
+    @subscribe(threadMode = Mode.BACKGROUND, onEvent=Events.IOHeavyTestEventBG)
+    def IOHeavyTest2(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest2: Background-thread', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest2: Background-thread', event.getDuration()))
 
-    @subscribe(threadMode = Mode.GREENLET, onEvent=Events.CPUHeavyTestEventGreenlet)
-    def cpuHeavyTest3(self, event):
+    @subscribe(threadMode = Mode.GREENLET, onEvent=Events.IOHeavyTestEventGreenlet)
+    def IOHeavyTest3(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest3: Greenlet', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest3: Greenlet', event.getDuration()))
 
-    @subscribe(threadMode = Mode.PARALLEL, onEvent=Events.CPUHeavyTestEventParallel)
-    def cpuHeavyTest4(self, event):
+    @subscribe(threadMode = Mode.PARALLEL, onEvent=Events.IOHeavyTestEventParallel)
+    def IOHeavyTest4(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest4: parallel', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest4: parallel', event.getDuration()))
 
-    @subscribe(threadMode = Mode.CONCURRENT, onEvent=Events.CPUHeavyTestEventConcurrent)
-    def cpuHeavyTest5(self, event):
+    @subscribe(threadMode = Mode.CONCURRENT, onEvent=Events.IOHeavyTestEventConcurrent)
+    def IOHeavyTest5(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest5: Concurrent', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest5: Concurrent', event.getDuration()))
 
-    @subscribe(onEvent=Events.CPUHeavyTestEvent)
-    def cpuHeavyTest6(self, event):
+    @subscribe(onEvent=Events.IOHeavyTestEvent)
+    def IOHeavyTest6(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest6: Main-thread', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest6: Main-thread', event.getDuration()))
     
-    @subscribe(threadMode = Mode.BACKGROUND, onEvent=Events.CPUHeavyTestEventBG)
-    def cpuHeavyTest7(self, event):
+    @subscribe(threadMode = Mode.BACKGROUND, onEvent=Events.IOHeavyTestEventBG)
+    def IOHeavyTest7(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest7: Background-thread', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest7: Background-thread', event.getDuration()))
 
-    @subscribe(threadMode = Mode.GREENLET, onEvent=Events.CPUHeavyTestEventGreenlet)
-    def cpuHeavyTest8(self, event):
+    @subscribe(threadMode = Mode.GREENLET, onEvent=Events.IOHeavyTestEventGreenlet)
+    def IOHeavyTest8(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest8: Greenlet', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest8: Greenlet', event.getDuration()))
 
-    @subscribe(threadMode = Mode.PARALLEL, onEvent=Events.CPUHeavyTestEventParallel)
-    def cpuHeavyTest9(self, event):
+    @subscribe(threadMode = Mode.PARALLEL, onEvent=Events.IOHeavyTestEventParallel)
+    def IOHeavyTest9(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest9: parallel', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest9: parallel', event.getDuration()))
 
-    @subscribe(threadMode = Mode.CONCURRENT, onEvent=Events.CPUHeavyTestEventConcurrent)
-    def cpuHeavyTest10(self, event):
+    @subscribe(threadMode = Mode.CONCURRENT, onEvent=Events.IOHeavyTestEventConcurrent)
+    def IOHeavyTest10(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest10: Concurrent', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest10: Concurrent', event.getDuration()))
 
-    @subscribe(onEvent=Events.CPUHeavyTestEvent)
-    def cpuHeavyTest11(self, event):
+    @subscribe(onEvent=Events.IOHeavyTestEvent)
+    def IOHeavyTest11(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest11: Main-thread', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest11: Main-thread', event.getDuration()))
     
-    @subscribe(threadMode = Mode.BACKGROUND, onEvent=Events.CPUHeavyTestEventBG)
-    def cpuHeavyTest12(self, event):
+    @subscribe(threadMode = Mode.BACKGROUND, onEvent=Events.IOHeavyTestEventBG)
+    def IOHeavyTest12(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest12: Background-thread', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest12: Background-thread', event.getDuration()))
 
-    @subscribe(threadMode = Mode.GREENLET, onEvent=Events.CPUHeavyTestEventGreenlet)
-    def cpuHeavyTest13(self, event):
+    @subscribe(threadMode = Mode.GREENLET, onEvent=Events.IOHeavyTestEventGreenlet)
+    def IOHeavyTest13(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest13: Greenlet', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest13: Greenlet', event.getDuration()))
 
-    @subscribe(threadMode = Mode.PARALLEL, onEvent=Events.CPUHeavyTestEventParallel)
-    def cpuHeavyTest14(self, event):
+    @subscribe(threadMode = Mode.PARALLEL, onEvent=Events.IOHeavyTestEventParallel)
+    def IOHeavyTest14(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest14: parallel', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest14: parallel', event.getDuration()))
 
-    @subscribe(threadMode = Mode.CONCURRENT, onEvent=Events.CPUHeavyTestEventConcurrent)
-    def cpuHeavyTest15(self, event):
+    @subscribe(threadMode = Mode.CONCURRENT, onEvent=Events.IOHeavyTestEventConcurrent)
+    def IOHeavyTest15(self, event):
         for i in range(3000):
             with open('{}/generated.json'.format(getcwd())) as f:
                 data = json.load(f)
         event.setFinish(timer())
-        print("{} ran the code in {} seconds.".format('cpuHeavyTest15: Concurrent', event.getDuration()))
+        print("{} ran the code in {} seconds.".format('IOHeavyTest15: Concurrent', event.getDuration()))
 
 
 if __name__ == '__main__':
@@ -252,16 +252,16 @@ if __name__ == '__main__':
 
     print sys.argv[1:][0]
     arg = sys.argv[1:][0]
-    if arg == 'startCPUHeavyTestInMain': tester.startCPUHeavyTestInMain()
-    elif arg == 'startCPUHeavyTestInBackground': tester.startCPUHeavyTestInBackground()
-    elif arg == 'startCPUHeavyTestInGreenlet': tester.startCPUHeavyTestInGreenlet()
-    elif arg == 'startCPUHeavyTestInParallel': tester.startCPUHeavyTestInParallel()
-    elif arg == 'startCPUHeavyTestInConcurrent': tester.startCPUHeavyTestInConcurrent()
+    if arg == 'startIOHeavyTestInMain': tester.startIOHeavyTestInMain()
+    elif arg == 'startIOHeavyTestInBackground': tester.startIOHeavyTestInBackground()
+    elif arg == 'startIOHeavyTestInGreenlet': tester.startIOHeavyTestInGreenlet()
+    elif arg == 'startIOHeavyTestInParallel': tester.startIOHeavyTestInParallel()
+    elif arg == 'startIOHeavyTestInConcurrent': tester.startIOHeavyTestInConcurrent()
     
 
 
-# tester.startCPUHeavyTestInMain()
-# tester.startCPUHeavyTestInBackground()
-# tester.startCPUHeavyTestInGreenlet()
-# tester.startCPUHeavyTestInParallel()
-# tester.startCPUHeavyTestInConcurrent()
+# tester.startIOHeavyTestInMain()
+# tester.startIOHeavyTestInBackground()
+# tester.startIOHeavyTestInGreenlet()
+# tester.startIOHeavyTestInParallel()
+# tester.startIOHeavyTestInConcurrent()
