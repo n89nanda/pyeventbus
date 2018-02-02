@@ -6,16 +6,6 @@ install:
   - pip install .
 # command to run tests
 script:
-  - python pyeventbus/tests/network_performance_testing.py startNetworkHeavyTestInMain
-  - python pyeventbus/tests/network_performance_testing.py startNetworkHeavyTestInBackground
-  - python pyeventbus/tests/network_performance_testing.py startNetworkHeavyTestInGreenlet
-  - python pyeventbus/tests/network_performance_testing.py startNetworkHeavyTestInParallel
-  - python pyeventbus/tests/network_performance_testing.py startNetworkHeavyTestInConcurrent
-  - python pyeventbus/tests/IO_performance_testing.py startIOHeavyTestInMain
-  - python pyeventbus/tests/IO_performance_testing.py startIOHeavyTestInBackground
-  - python pyeventbus/tests/IO_performance_testing.py startIOHeavyTestInGreenlet
-  - python pyeventbus/tests/IO_performance_testing.py startIOHeavyTestInParallel
-  - python pyeventbus/tests/IO_performance_testing.py startIOHeavyTestInConcurrent
   - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInMain
   - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInBackground
   - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInGreenlet
