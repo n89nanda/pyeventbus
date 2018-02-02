@@ -1,4 +1,8 @@
-source venv/bin/activate
+python network_performance_testing.py startNetworkHeavyTestInMain
+python network_performance_testing.py startNetworkHeavyTestInBackground
+python network_performance_testing.py startNetworkHeavyTestInGreenlet
+python network_performance_testing.py startNetworkHeavyTestInParallel
+python network_performance_testing.py startNetworkHeavyTestInConcurrent
 python IO_performance_testing.py startIOHeavyTestInMain
 python IO_performance_testing.py startIOHeavyTestInBackground
 python IO_performance_testing.py startIOHeavyTestInGreenlet
@@ -9,4 +13,4 @@ python performance_testing.py startCPUHeavyTestInBackground
 python performance_testing.py startCPUHeavyTestInGreenlet
 python performance_testing.py startCPUHeavyTestInParallel
 python performance_testing.py startCPUHeavyTestInConcurrent
-deactivate
+

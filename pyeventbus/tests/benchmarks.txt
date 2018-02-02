@@ -1,0 +1,72 @@
+startNetworkHeavyTestInMain
+NetworkHeavyTest1: Main-thread ran the code in 6.21921014786 seconds.
+NetworkHeavyTest6: Main-thread ran the code in 12.4916741848 seconds.
+NetworkHeavyTest11: Main-thread ran the code in 19.2624599934 seconds.
+startNetworkHeavyTestInMain:  got control back in 19.2624850273 seconds.
+startNetworkHeavyTestInBackground
+startNetworkHeavyTestInBackground:  got control back in 0.00607299804688 seconds.
+NetworkHeavyTest7: Background-thread ran the code in 7.24917411804 seconds.
+NetworkHeavyTest2: Background-thread ran the code in 7.36120295525 seconds.
+NetworkHeavyTest12: Background-thread ran the code in 7.53864502907 seconds.
+startNetworkHeavyTestInGreenlet
+NetworkHeavyTest3: Greenlet ran the code in 7.74867200851 seconds.
+NetworkHeavyTest8: Greenlet ran the code in 14.3777029514 seconds.
+NetworkHeavyTest13: Greenlet ran the code in 22.514841795 seconds.
+startNetworkHeavyTestInGreenlet:  got control back in 22.5148839951 seconds.
+startNetworkHeavyTestInParallel
+startNetworkHeavyTestInParallel:  got control back in 0.00499176979065 seconds.
+NetworkHeavyTest9: parallel ran the code in 6.27140808105 seconds.
+NetworkHeavyTest14: parallel ran the code in 6.30765199661 seconds.
+NetworkHeavyTest4: parallel ran the code in 6.39215302467 seconds.
+startNetworkHeavyTestInConcurrent
+startNetworkHeavyTestInConcurrent:  got control back in 0.00659894943237 seconds.
+startIOHeavyTestInMain
+IOHeavyTest1: Main-thread ran the code in 3.02394104004 seconds.
+IOHeavyTest6: Main-thread ran the code in 6.04688096046 seconds.
+IOHeavyTest11: Main-thread ran the code in 9.09023499489 seconds.
+startIOHeavyTestInMain:  got control back in 9.09029793739 seconds.
+startIOHeavyTestInBackground
+startIOHeavyTestInBackground:  got control back in 0.00502991676331 seconds.
+IOHeavyTest12: Background-thread ran the code in 9.41254115105 seconds.
+IOHeavyTest7: Background-thread ran the code in 9.52461218834 seconds.
+IOHeavyTest2: Background-thread ran the code in 9.61152601242 seconds.
+startIOHeavyTestInGreenlet
+IOHeavyTest3: Greenlet ran the code in 3.03798007965 seconds.
+IOHeavyTest8: Greenlet ran the code in 6.07207989693 seconds.
+IOHeavyTest13: Greenlet ran the code in 9.10530996323 seconds.
+startIOHeavyTestInGreenlet:  got control back in 9.10538196564 seconds.
+startIOHeavyTestInParallel
+startIOHeavyTestInParallel:  got control back in 0.00330495834351 seconds.
+IOHeavyTest4: parallel ran the code in 9.22259306908 seconds.
+IOHeavyTest9: parallel ran the code in 9.47907304764 seconds.
+IOHeavyTest14: parallel ran the code in 9.53566193581 seconds.
+startIOHeavyTestInConcurrent
+IOHeavyTest5: Concurrent ran the code in 3.12759900093 seconds.
+IOHeavyTest10: Concurrent ran the code in 3.12921094894 seconds.
+IOHeavyTest15: Concurrent ran the code in 3.1357998848 seconds.
+startIOHeavyTestInConcurrent:  got control back in 0.00642800331116 seconds.
+startCPUHeavyTestInMain
+cpuHeavyTest1: Main-thread ran the code in 7.70313596725 seconds.
+cpuHeavyTest6: Main-thread ran the code in 15.3639080524 seconds.
+cpuHeavyTest11: Main-thread ran the code in 22.9685280323 seconds.
+startCPUHeavyTestInMain:  got control back in 22.9767711163 seconds.
+startCPUHeavyTestInBackground
+startCPUHeavyTestInBackground:  got control back in 0.000818967819214 seconds.
+cpuHeavyTest2: Background-thread ran the code in 7.82697916031 seconds.
+cpuHeavyTest7: Background-thread ran the code in 15.3891811371 seconds.
+cpuHeavyTest12: Background-thread ran the code in 22.9915940762 seconds.
+startCPUHeavyTestInGreenlet
+cpuHeavyTest3: Greenlet ran the code in 7.87068009377 seconds.
+cpuHeavyTest8: Greenlet ran the code in 16.029321909 seconds.
+cpuHeavyTest13: Greenlet ran the code in 23.7925570011 seconds.
+startCPUHeavyTestInGreenlet:  got control back in 23.799268961 seconds.
+startCPUHeavyTestInParallel
+startCPUHeavyTestInParallel:  got control back in 0.000665187835693 seconds.
+cpuHeavyTest4: parallel ran the code in 7.97341108322 seconds.
+cpuHeavyTest9: parallel ran the code in 15.9931600094 seconds.
+cpuHeavyTest14: parallel ran the code in 23.9451489449 seconds.
+startCPUHeavyTestInConcurrent
+cpuHeavyTest15: Concurrent ran the code in 9.8093829155 seconds.
+cpuHeavyTest10: Concurrent ran the code in 9.86121106148 seconds.
+cpuHeavyTest5: Concurrent ran the code in 9.87522602081 seconds.
+startCPUHeavyTestInConcurrent:  got control back in 0.0121619701385 seconds.

@@ -7,7 +7,7 @@ def readme():
 
 
 setup(name='pyeventbus',
-      version='0.1',
+      version='0.2',
       description='A Python EventBus',
       long_description=readme(),
       classifiers=[
@@ -21,7 +21,7 @@ setup(name='pyeventbus',
         'Operating System :: OS Independent',
       ],
       keywords='python eventbus with threading and concurrency support',
-      url='https://github.com/n89nanda/EventBus',
+      url='https://github.com/n89nanda/pyeventbus',
       author='Nanda Bhat',
       author_email='n89nanda@gmail.com',
       license='MIT',
