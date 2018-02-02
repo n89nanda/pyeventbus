@@ -143,3 +143,7 @@ Benchmarks and Performance::
         Refer /pyeventbus/tests/benchmarks.txt for performance benchmarks on CPU, I/O and networks heavy tasks.
         
         Run /pyeventbus/tests/test.sh to generate the same benchmarks.
+
+Inspiration
+
+        Inspired by Eventbus from greenrobot: https://github.com/greenrobot/EventBus
