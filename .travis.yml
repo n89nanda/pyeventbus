@@ -1,13 +1,14 @@
 language: python
 python:
-  - "2.7"
-# command to install dependencies
+- '2.7'
 install:
-  - pip install .
-# command to run tests
+- pip install .
 script:
-  - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInMain
-  - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInBackground
-  - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInGreenlet
-  - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInParallel
-  - python pyeventbus/tests/performance_testing.py startCPUHeavyTestInConcurrent
+- python pyeventbus/tests/performance_testing.py startCPUHeavyTestInMain
+- python pyeventbus/tests/performance_testing.py startCPUHeavyTestInBackground
+- python pyeventbus/tests/performance_testing.py startCPUHeavyTestInGreenlet
+- python pyeventbus/tests/performance_testing.py startCPUHeavyTestInParallel
+- python pyeventbus/tests/performance_testing.py startCPUHeavyTestInConcurrent
+notifications:
+  slack:
+    secure: GIfY4prOqucEgd5IyCMQdzFwF9FOwrk9H5dx7BKt5Q8aSHlugClfvoZh3dAH+DF2pyK1bnkx133JGyBt4jRZPkmSYxZDwSyzOVueRA9Sk/wqjN5S/fs7pZrBMejKgb+T0ea8cvCT29oxAtj0V0EgE1dHDP+c7b1UJPrLmaDzpl93gWVxCJPyEmgtFOZCd2Qa1nVkAa3kHnI4qZtWRfqci9fYlEJ8S7jfXNZ/+QY/EFJDOKITfVVU0rUkeL9oCDudXBGsJciyYhbOBHW786J0Onf46go/Bei2z/OdzOaBzEzmj3c2bCi/k0UOugdSaQRVUKPqksbpMEcAcXiVDnyc1W21DpTsgDk/7YL8aScR37jBHGkLDm3xodSYn8fDkjacA70zXhCIWaOUM/dEUFurrVcqyOIy5JZiI+nl8bARc92Qx35J4+Yj2iaRArHg2VBrlmVc0QrCnvWk/MMgJyTPc9ih9OCuIdgAQNnrwQwNJrE4r9zyYBu7//PsDUcM6Ht/UmcJo/EQfvCFvqU/iY/8935qAayOuq6aWE/x7Hw7fnF5k1rgHfFxJoHKaLVtJPTYQ1qqhEIZGLex+j027sG/s+3WAjQdtouJkVaHh25X4fOS30cRhdjC4jrsVWqSMssHbjTE2J6V5Wk8sfhDGgG1pEf1RZAXLnmkBZLaUic5vso=
