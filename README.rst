@@ -9,7 +9,7 @@ pyeventbus is a publish/subscribe event bus for Python 2.7.
 + avoids complex and error-prone dependencies and life cycle issues
 + makes code simpler
 + has advanced features like delivery threads, workers and spawning different processes, etc.
-+ is tiny (3KB jar) 
++ is tiny (3KB archive) 
 
 pyeventbus in 3 steps:
 
