@@ -66,7 +66,7 @@ pyeventbus in 3 steps:
 
 Modes: pyeventbus can run the subscribing methods in 5 different modes
 
-1. POSTING:
+1. POSTING::
 
     Runs the method in the same thread as posted. For example, if an event is posted from main thread, the subscribing method also runs in the main thread. If an event is posted in a seperate thread, the subscribing method runs in the same seperate method
     
