@@ -135,3 +135,11 @@ Example::
     pip install pyeventbus
     
     python example.py
+    
+
+Benchmarks and Performance::
+        
+        
+        Refer /pyeventbus/tests/benchmarks.txt for performance benchmarks on CPU, I/O and networks heavy tasks.
+        
+        Run /pyeventbus/tests/test.sh to generate the same benchmarks.
