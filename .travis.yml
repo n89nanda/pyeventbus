@@ -6,4 +6,4 @@ install:
   - pip install .
 # command to run tests
 script:
-  - python  ./pyeventbus/tests/tests.sh
+  - ./pyeventbus/tests/tests.sh
