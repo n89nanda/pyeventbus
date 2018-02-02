@@ -1,6 +1,9 @@
 pyeventbus
 =========================
 
+.. image:: https://travis-ci.org/n89nanda/pyeventbus.svg?branch=master
+    :target: https://travis-ci.org/n89nanda/pyeventbus
+    
 pyeventbus is a publish/subscribe event bus for Python 2.7.
 
 + simplifies the communication between python classes 
