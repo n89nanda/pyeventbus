@@ -68,12 +68,12 @@ Modes: pyeventbus can run the subscribing methods in 5 different modes
 
 1. POSTING:
 
-    + Runs the method in the same thread as posted. For example, if an event is posted from main thread, the subscribing method also runs in the main thread. If an event is posted in a seperate thread, the subscribing method runs in the same seperate method
+    Runs the method in the same thread as posted. For example, if an event is posted from main thread, the subscribing method also runs in the main thread. If an event is posted in a seperate thread, the subscribing method runs in the same seperate method
     
-    + This is the default mode::
+    This is the default mode::
         
-            @subscribe(threadMode = Mode.POSTING, onEvent=MessageEvent)
-            def func(self, event):
+        @subscribe(threadMode = Mode.POSTING, onEvent=MessageEvent)
+        def func(self, event):
                 # Do something
                 pass
     
