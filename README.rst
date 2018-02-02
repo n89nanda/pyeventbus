@@ -21,6 +21,8 @@ pyeventbus in 3 steps:
                  
 2. Prepare subscribers: Declare and annotate your subscribing method, optionally specify a thread mode::
 
+            from pyeventbus import *
+            
             @subscribe(onEvent=MessageEvent)
             def func(self, event):
                 # Do something
@@ -28,6 +30,8 @@ pyeventbus in 3 steps:
                 
    
    Register your subscriber. For example, if you want to register a class in Python::
+            
+            from pyeventbus import *
             
             class MyClass:
                 def __init__(self):
@@ -43,6 +47,8 @@ pyeventbus in 3 steps:
             
 3. Post events::
         
+            from pyeventbus import *
+            
             class MyClass:
                 def __init__(self):
                     pass
