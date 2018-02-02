@@ -1,7 +1,7 @@
 pyeventbus
 =========================
 
-pyeventbus is a publish/subscribe event bus for Android and Java.
+pyeventbus is a publish/subscribe event bus for Python 2.7.
 
 + simplifies the communication between python classes 
 + decouples event senders and receivers
