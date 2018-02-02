@@ -72,10 +72,10 @@ Modes: pyeventbus can run the subscribing methods in 5 different modes
     
     This is the default mode::
         
-        @subscribe(threadMode = Mode.POSTING, onEvent=MessageEvent)
-        def func(self, event):
-                # Do something
-                pass
+    @subscribe(threadMode = Mode.POSTING, onEvent=MessageEvent)
+    def func(self, event):
+        # Do something
+        pass
     
 2. PARALLEL:
     
