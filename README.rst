@@ -65,7 +65,7 @@ pyeventbus in 3 steps:
               
              myclass = MyClass()
              myclass.register(myclass)
-             myclass.post()
+             myclass.postingAnEvent()
             
 
 Modes: pyeventbus can run the subscribing methods in 5 different modes
