@@ -44,17 +44,17 @@ class PyBus:
     def DoesSubscribersContainThisMethod(self, method, subscriber):
         return True if method.__name__ in dir(subscriber) else False
 
-    
-    def call(self, method, withEvent, inMode):
+
+    def call(self, method, withEvent, inMode, subscriber):
         from random import randint
-        if inMode == 0: method(self, withEvent) 
+        if inMode == 0: method(subscriber, withEvent) 
         else:
             try:
                 threadName = "thread-" + method.__name__
-                if inMode == 4: PyBusThread(randint(1,100), threadName, 1, method, withEvent).start()
-                elif inMode == 1: self.queue.put(PyBusThread(randint(1,100), threadName, 1, method, withEvent).start())
-                elif inMode == 5: multiprocessing.Process(target=method, args=(self, withEvent,)).start()
-                elif inMode == 3: gevent.spawn(method(self, withEvent))                    
+                if inMode == 4: PyBusThread(randint(1,100), threadName, 1, method, withEvent, subscriber).start()
+                elif inMode == 1: self.queue.put(PyBusThread(randint(1,100), threadName, 1, method, withEvent, subscriber).start())
+                elif inMode == 5: multiprocessing.Process(target=method, args=(subscriber, withEvent,)).start()
+                elif inMode == 3: gevent.spawn(method(subscriber, withEvent))                    
             except:
                 raise Exception('Unable to start thread for method: ', method, ' with event: ', withEvent)
 
@@ -64,8 +64,8 @@ class PyBus:
             if event.__class__ in self.event_method:
                 for method in self.event_method[event.__class__]:
                     subscribersContainingThisMethod = filter(lambda subscriber: self.DoesSubscribersContainThisMethod(method, subscriber), self.subscribers.values())
-                    for s in range(len(subscribersContainingThisMethod)):
-                        self.call(method=method, withEvent=event, inMode=self.method_mode.get(method))
+                    for subscriber in subscribersContainingThisMethod:
+                        self.call(method=method, withEvent=event, inMode=self.method_mode.get(method), subscriber=subscriber)
             else:
                 raise Exception('Could not find subscriber for posted event', event)
 
@@ -99,16 +99,17 @@ class Mode:
 
 
 class PyBusThread (threading.Thread):
-    def __init__(self, threadID, name=None, counter=None, method=None, event=None):
+    def __init__(self, threadID, name=None, counter=None, method=None, event=None, subscriber=None):
        threading.Thread.__init__(self)
        self.threadID = threadID
        self.name = name
        self.counter = counter
        self.method = method
        self.event = event
+       self.subscriber = subscriber
 
     def run(self):
-        self.method(self, self.event)
+        self.method(self.subscriber, self.event)
 
 from pyeventbus import Mode
 def subscribe(threadMode = Mode.POSTING, onEvent = None):

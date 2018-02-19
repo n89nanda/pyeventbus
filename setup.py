@@ -7,7 +7,7 @@ def readme():
 
 
 setup(name='pyeventbus',
-      version='0.2',
+      version='0.5',
       description='A Python EventBus',
       long_description=readme(),
       classifiers=[

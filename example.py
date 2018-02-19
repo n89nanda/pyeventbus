@@ -1,4 +1,5 @@
 from pyeventbus import *
+import time
 
 class Events:
     class EventFromA:
@@ -23,9 +24,10 @@ class A:
     def post(self):
         PyBus.Instance().post(Events.EventFromA("EventFromA"))
     
-    @subscribe(threadMode = Mode.POSTING, onEvent=Events.EventFromB)
+    @subscribe(threadMode = Mode.PARALLEL, onEvent=Events.EventFromB)
     def readEventFromB(self, event):
         print 'Class A', event.getMessage()
+
 
 class B:
     def __init__(self):
@@ -35,7 +37,7 @@ class B:
     def register(self, bInstance):
         PyBus.Instance().register(bInstance, self.__class__.__name__)
 
-    @subscribe(onEvent=Events.EventFromA)
+    @subscribe( threadMode = Mode.BACKGROUND, onEvent=Events.EventFromA)
     def readEventFromA(self, event):
         print 'Class B:', event.getMessage()
     
@@ -43,12 +45,13 @@ class B:
         PyBus.Instance().post(Events.EventFromB("EventFromB"))
 
 
+if __name__ == "__main__":
+    a = A()
+    a.register(a)
 
-a = A()
-a.register(a)
-
-b = B()
-b.register(b)
-
-a.post()
-b.post()
+    b = B()
+    b.register(b)
+        
+    a.post()
+    b.post()
+    
