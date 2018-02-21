@@ -146,6 +146,14 @@ Benchmarks and Performance::
         Refer /pyeventbus/tests/benchmarks.txt for performance benchmarks on CPU, I/O and networks heavy tasks.
         
         Run /pyeventbus/tests/test.sh to generate the same benchmarks.
+        
+        Performance comparison between all the modes with Python and Cython
+        
+.. image:: pyeventbus/tests/Benchmarks.png
+            :width: 2000px
+            :align: center
+            :height: 1000px
+            :alt: alternate text
 
 Inspiration
 
